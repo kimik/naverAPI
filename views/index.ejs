@@ -1,0 +1,47 @@
+<html>
+	<head>
+		<title> Find Img !! from Naxver </title>
+		<link rel='stylesheet' href='/stylesheets/style.css'/>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+
+		<script type="text/javascript">
+					function find(){
+						$.ajax({
+							type : "POST",
+							url : "/findimg",
+							data :{
+								target : "image",
+								query : $("#keyword").val(),
+							},
+						}).done( function(data){
+								$(data.data).find('item').each(function(){
+							   	$("#naverContainer").append(
+							   		'<img src='+$(this).find('thumbnail').text()+'/>');
+							  });
+						})
+					}
+			</script>
+	</head>
+
+
+
+	<body>
+		<div id="top" align="center">
+				<input id="keyword" type="text" width="20%" align="center">
+				<button  onclick="find()">Find</button>
+		</div>
+
+		<div id="container" style="margin: 0 auto;">
+			<div width="40%" style="color:blue;float:left">
+				<ul id="googleContainer" >		</ul>
+			<div width="40%" style="color:green;float:left">
+				<ul id="naverContainer">		</ul>
+			</div>
+		</div>
+
+
+
+
+	</body>
+</html>
